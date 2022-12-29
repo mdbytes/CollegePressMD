@@ -2,7 +2,7 @@
 
 A basic WordPress theme built in conjunction with the following course:
 
-<a href="">Becoming a WordPress Developer: Unlocking Power With Code</a>
+<a href="https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/learn/lecture/7343034?start=15#overview">Becoming a WordPress Developer: Unlocking Power With Code</a>
 
 <h3>Course Covers:</h3>
 <ul>
