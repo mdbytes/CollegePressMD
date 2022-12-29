@@ -1,0 +1,19 @@
+{
+  "name": "bu-college-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.php",
+  "scripts": {
+    "compile:sass": "sass --watch ./css:dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "autoprefixer": "^10.4.0",
+    "bootstrap-icons": "^1.9.1",
+    "glightbox": "^3.1.0",
+    "postcss-cli": "^9.0.2"
+  }
+}
