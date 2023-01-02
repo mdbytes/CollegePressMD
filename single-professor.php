@@ -31,7 +31,7 @@ while (have_posts()) {
 
         if ($related_programs) {
             echo '<hr class="section-break';
-            echo '<h2 class="headline headline-medium">Related Programs</h2>';
+            echo '<h2 class="headline headline-medium">Subjects Taught</h2>';
             echo "<ul class='link-list min-list'>";
             foreach ($related_programs as $program) {
 
