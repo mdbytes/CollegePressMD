@@ -22,9 +22,6 @@ page_banner(array(
                 <p><a class="btn btn--blue" href="<?php the_permalink() ?>">continue reading &raquo</a></p>
             </div>
         </div>
-
-
-
     <?php
 
     }
@@ -32,9 +29,6 @@ page_banner(array(
     echo paginate_links();
 
     ?>
-
-
-
 </div>
 
 <?php get_footer() ?>

@@ -22,8 +22,6 @@ page_banner(array(
             </div>
         </div>
 
-
-
     <?php
 
     }
@@ -31,9 +29,6 @@ page_banner(array(
     echo paginate_links();
 
     ?>
-
-
-
 </div>
 
 <?php get_footer() ?>
