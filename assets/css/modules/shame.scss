@@ -15,6 +15,7 @@
 .page-section {
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
+
   @include atSmall {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
@@ -59,11 +60,20 @@
   }
 }
 
+.logo-font {
+  font-family: 'MuseoModerno', cursive;
+  font-weight: 800;
+  font-size: 150%;
+  color: #009900;
+  letter-spacing: -.25rem;
+}
+
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -84,15 +94,19 @@
 .c-orange {
   color: $darkOrange;
 }
+
 .c-blue {
   color: $mainBlue;
 }
+
 .c-white {
   color: #fff;
 }
+
 .c-dark {
   color: #333;
 }
+
 .gray {
   color: #999999;
 }
@@ -104,6 +118,7 @@
   cursor: pointer;
   top: 1px;
   margin-left: 20px;
+
   @include atMedium {
     display: inline-block;
     top: 6px;
@@ -138,15 +153,19 @@
 .social-color-facebook {
   background-color: #4862a3;
 }
+
 .social-color-twitter {
   background-color: #55acee;
 }
+
 .social-color-youtube {
   background-color: #cc1e1f;
 }
+
 .social-color-linkedin {
   background-color: #0077b5;
 }
+
 .social-color-instagram {
   background-color: #d8226b;
 }
@@ -199,18 +218,23 @@
   .two-thirds {
     width: 66.66%;
   }
+
   .one-half {
     width: 50%;
   }
+
   .one-third {
     width: 33.33%;
   }
+
   .one-quarter {
     width: 25%;
   }
+
   .one-fifth {
     width: 20%;
   }
+
   .one-sixth {
     width: 16.66%;
   }
@@ -245,6 +269,7 @@
   border: none;
   font-family: "Roboto", sans-serif;
   padding: 10px;
+
   @include atSmall {
     font-size: 1.4rem;
   }

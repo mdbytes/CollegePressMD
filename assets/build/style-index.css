@@ -197,6 +197,14 @@ li {
   text-decoration: underline;
 }
 
+.logo-font {
+  font-family: "MuseoModerno", cursive;
+  font-weight: 800;
+  font-size: 150%;
+  color: #009900;
+  letter-spacing: -0.25rem;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
