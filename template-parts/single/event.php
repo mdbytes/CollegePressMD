@@ -1,10 +1,3 @@
-<?php
-get_header();
-while (have_posts()) {
-    the_post();
-    page_banner();
-?>
-
     <div class="container container--narrow page-section">
         <div class="metabox metabox--position-up metabox--with-home-link">
             <p>
@@ -37,8 +30,3 @@ while (have_posts()) {
         ?>
 
     </div>
-
-<?php
-}
-get_footer();
-?>
