@@ -1,5 +1,5 @@
 <?php
-get_header();
+
 page_banner(array(
     'title' => 'All Programs',
     'subtitle' => 'Something for everyone'
@@ -28,5 +28,3 @@ page_banner(array(
     echo paginate_links();
     ?>
 </div>
-
-<?php get_footer() ?>

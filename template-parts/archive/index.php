@@ -1,5 +1,4 @@
 <?php
-get_header();
 page_banner(array(
     'title' => get_the_archive_title(),
     'subtitle' => get_the_archive_description()
@@ -30,5 +29,3 @@ page_banner(array(
 
     ?>
 </div>
-
-<?php get_footer() ?>
