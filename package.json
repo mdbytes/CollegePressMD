@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile:sass": "sass --watch ./css:dist",
-    "build": "wp-scripts build",
+    "build": "wp-scripts build assets/src/index.js --output-path=assets/build",
     "start": "wp-scripts start",
     "dev": "wp-scripts start",
     "devFast": "wp-scripts start",
