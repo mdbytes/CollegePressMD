@@ -1,12 +1,17 @@
 {
-  "name": "bu-college-theme",
+  "name": "college-press-md",
   "version": "1.0.0",
   "description": "",
-  "main": "index.php",
+  "main": "index.js",
   "scripts": {
-    "compile:sass": "sass --watch ./css:dist"
+    "compile:sass": "sass --watch ./css:dist",
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "dev": "wp-scripts start",
+    "devFast": "wp-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Martin Dwyer",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.2.3",
@@ -14,6 +19,10 @@
     "autoprefixer": "^10.4.0",
     "bootstrap-icons": "^1.9.1",
     "glightbox": "^3.1.0",
-    "postcss-cli": "^9.0.2"
+    "postcss-cli": "^9.0.2",
+    "@glidejs/glide": "^3.4.1",
+    "@wordpress/scripts": "*",
+    "axios": "^0.21.1",
+    "normalize.css": "^8.0.1"
   }
 }

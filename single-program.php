@@ -39,7 +39,6 @@ while (have_posts()) {
             while ($related_professors->have_posts()) {
                 $related_professors->the_post();
         ?>
-
                 <li class="professor-card__list-item">
                     <a class="professor-card" href="<?php the_permalink(); ?>">
                         <img class="professor-card__image" src="<?php the_post_thumbnail_url('professor-landscape'); ?>">
@@ -83,28 +82,25 @@ while (have_posts()) {
 
             while ($home_page_events->have_posts()) {
                 $home_page_events->the_post();
-        ?>
-                <div class="event-summary">
-                    <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-                        <span class="event-summary__month"><?php
-
-
-                                                            $event_date = new DateTime(get_field('event_date'));
-                                                            echo $event_date->format('M'); ?></span>
-                        <span class="event-summary__day"><?php echo $event_date->format('d') ?></span>
-                    </a>
-                    <div class="event-summary__content">
-                        <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                        <p><?php if (has_excerpt()) {
-                                echo get_the_excerpt();
-                            } else {
-                                echo wp_trim_words(get_the_content(), 15);
-                            } ?> <a href="<?php the_permalink(); ?><a href=" <?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
-                    </div>
-                </div>
-        <?php
+                get_template_part('template-parts/content', 'event');
             }
         }
+
+        wp_reset_postdata();
+        $related_campuses = get_field('related_campus');
+        if ($related_campuses) {
+            echo '<hr class="section-break">';
+            echo "<h2 class='headline headline--medium'>" . get_the_title() . " is available at these campuses:</h2>";
+            echo '<ul class="min-list link-list">';
+            foreach ($related_campuses as $campus) {
+        ?>
+                <li><a href=<?php echo get_the_permalink($campus);  ?>><?php echo get_the_title($campus); ?></a></li>
+
+        <?php
+            }
+            echo '</ul>';
+        }
+
         ?>
 
     </div>
