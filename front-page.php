@@ -36,6 +36,7 @@
         $home_page_events->the_post();
         get_template_part('template-parts/content', 'event');
       }
+      wp_reset_postdata();
       ?>
 
 

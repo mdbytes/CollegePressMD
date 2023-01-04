@@ -1,100 +1,58 @@
 <?php
 
-function page_banner($args = NULL)
-{
-    if (!isset($args['title'])) {
-        $args['title'] = get_the_title();
-    }
+/**
+ * Theme functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package CollegePressMD
+ * @since 1.0.0
+ */
 
-    if (!isset($args['subtitle'])) {
-        $args['subtitle'] = get_field('page_banner_subtitle');
-    }
+/**
+ * Define Constants
+ */
+define('THEME_DIR', get_template_directory());
+define('THEME_URI', esc_url(get_template_directory_uri()));
 
-    if (!isset($args['photo'])) {
+/**
+ * Theme functionality: Features
+ */
+require_once THEME_DIR . '/inc/core/theme-features.php';
 
-        if (get_field('page_banner_background_image') && !is_archive() && !is_home()) {
-            $args['photo'] = get_field('page_banner_background_image')['sizes']['page-banner'];
-        } else {
-            $args['photo'] = get_theme_file_uri('/images/ocean.jpg');
-        }
-    }
+/**
+ * Theme functionality: Nav menu locations
+ */
+require_once THEME_DIR . '/inc/core/nav-menu.php';
 
-?>
-    <div class="page-banner">
-        <div class="page-banner__bg-image" style="background-image: url(<?php echo $args['photo']; ?>"></div>
-        <div class="page-banner__content container container--narrow">
-            <h1 class="page-banner__title"><?php echo $args['title']; ?></h1>
-            <div class="page-banner__intro">
-                <?php echo $args['subtitle']; ?>
-            </div>
-        </div>
-    </div>
+/**
+ * Theme functionality: Image support
+ */
+require_once THEME_DIR . '/inc/core/image-support.php';
 
-<?php
-}
+/**
+ * Theme functionality: Page banner utility
+ */
+require_once THEME_DIR . '/inc/core/page-banner.php';
 
-function university_files()
-{
-    wp_enqueue_script('google-map-js', '//maps.googleapis.com/maps/api/js?key=AIzaSyCEA-yi8uLvczzjB-7tJ83IZkXODuAh7QI', NULL, '1.0', true);
-    wp_enqueue_script('main-university-js', get_theme_file_uri('/assets/build/index.js'), array('jquery'), '1.0', true);
-    wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
-    wp_enqueue_style('google-font-for-logo', '//fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap');
-    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-    wp_enqueue_style('university_main_styles', get_theme_file_uri('assets/build/style-index.css'));
-    wp_enqueue_style('university_extra_styles', get_theme_file_uri('/assets/build/index.css'));
-}
+/**
+ * Theme functionality: Post types
+ */
+require_once THEME_DIR . '/inc/types/post-types.php';
 
-add_action('wp_enqueue_scripts', 'university_files');
+/**
+ * Theme functionality: Adjust queries as needed
+ */
+require_once THEME_DIR . '/inc/campus/queries.php';
+require_once THEME_DIR . '/inc/event/queries.php';
+require_once THEME_DIR . '/inc/program/queries.php';
 
-function university_features()
-{
-    register_nav_menu('header-menu-location', 'Header Menu Location');
-    register_nav_menu('footer-location-1', 'Footer location 1');
-    register_nav_menu('footer-location-2', 'Footer location 2');
-    add_theme_support('title-tag');
-    add_theme_support('post-thumbnails');
-    add_image_size('professor-landscape', 400, 260, true);
-    add_image_size('professor-portrait', 480, 650, true);
-    add_image_size('page-banner', 1500, 350, true);
-}
+/**
+ * Add scripts
+ */
+require_once THEME_DIR . '/inc/core/theme-scripts.php';
 
-add_action('after_setup_theme', 'university_features');
-
-function university_adjust_queries($query)
-{
-    $today = date('Ymd');
-    if (!is_admin() && is_post_type_archive('event') && $query->is_main_query()) {
-        $query->set('meta-key', 'event_date');
-        $query->set('orderby', 'meta_value_num');
-        $query->set('order', 'ASC');
-        $query->set('meta_query', array(
-            array(
-                'key' => 'event_date',
-                'compare' => '>=',
-                'value' => $today,
-                'type' => 'numeric'
-            )
-        ));
-    }
-
-    if (!is_admin() && is_post_type_archive('program') && $query->is_main_query()) {
-        $query->set('orderby', 'title');
-        $query->set('order', 'ASC');
-        $query->set('posts_per_page', -1);
-    }
-
-    if (!is_admin() && is_post_type_archive('campus') && $query->is_main_query()) {
-        $query->set('posts_per_page', -1);
-    }
-}
-
-add_action('pre_get_posts', 'university_adjust_queries');
-
-
-function university_map_key($api)
-{
-    $api['key'] = 'AIzaSyCEA-yi8uLvczzjB-7tJ83IZkXODuAh7QI';
-    return $api;
-}
-
-add_filter('acf/fields/google_map/api', 'university_map_key');
+/**
+ * Theme functionality: Set up Google map key
+ */
+require_once THEME_DIR . '/inc/campus/map-key.php';
