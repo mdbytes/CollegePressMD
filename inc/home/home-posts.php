@@ -1,5 +1,5 @@
 <?php
-function display_events()
+function home_posts()
 {
     $home_page_posts = new WP_Query(array(
         'posts_per_page' => 2

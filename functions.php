@@ -31,11 +31,6 @@ require_once THEME_DIR . '/inc/core/nav-menu.php';
 require_once THEME_DIR . '/inc/core/image-support.php';
 
 /**
- * Theme functionality: Page banner utility
- */
-require_once THEME_DIR . '/inc/core/page-banner.php';
-
-/**
  * Theme functionality: Post types
  */
 require_once THEME_DIR . '/inc/types/post-types.php';
@@ -56,3 +51,18 @@ require_once THEME_DIR . '/inc/core/theme-scripts.php';
  * Theme functionality: Set up Google map key
  */
 require_once THEME_DIR . '/inc/campus/map-key.php';
+
+/**
+ * Theme utilities
+ */
+
+/**
+ * Page banner utility
+ */
+require_once THEME_DIR . '/inc/core/page-banner.php';
+
+/**
+ * Home page functionality
+ */
+require_once THEME_DIR . '/inc/home/home-posts.php';
+require_once THEME_DIR . '/inc/home/home-events.php';
