@@ -13,9 +13,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_MobileMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/MobileMenu */ "./src/modules/MobileMenu.js");
 /* harmony import */ var _modules_HeroSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/HeroSlider */ "./src/modules/HeroSlider.js");
 /* harmony import */ var _modules_GoogleMap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/GoogleMap */ "./src/modules/GoogleMap.js");
+/* harmony import */ var _modules_Search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/Search */ "./src/modules/Search.js");
 
 
 // Our modules / classes
+
 
 
 
@@ -24,6 +26,7 @@ __webpack_require__.r(__webpack_exports__);
 const mobileMenu = new _modules_MobileMenu__WEBPACK_IMPORTED_MODULE_1__["default"]();
 const heroSlider = new _modules_HeroSlider__WEBPACK_IMPORTED_MODULE_2__["default"]();
 const googleMap = new _modules_GoogleMap__WEBPACK_IMPORTED_MODULE_3__["default"]();
+const search = new _modules_Search__WEBPACK_IMPORTED_MODULE_4__["default"]();
 
 /***/ }),
 
@@ -180,6 +183,149 @@ class MobileMenu {
 
 /***/ }),
 
+/***/ "./src/modules/Search.js":
+/*!*******************************!*\
+  !*** ./src/modules/Search.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+class Search {
+  // describe and create/initiate our object
+  constructor() {
+    this.addSearchHTML();
+    this.openButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".js-search-trigger");
+    this.closeButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".search-overlay__close");
+    this.searchOverlay = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".search-overlay");
+    this.searchField = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#search-term");
+    this.typingTimer;
+    this.isSpinningWheel = false;
+    this.searchResults = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#search-overlay__results");
+    this.isOpen = false;
+    this.previousSearchTerm = "";
+    this.events();
+  }
+  addSearchHTML() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").append(`
+    <div class="search-overlay">
+      <div class="search-overlay__top">
+          <div class="container">
+              <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+              <input type="text" class="search-term" placeholder="What are you looking for?" id="search-term" autocomplete="off" />
+              <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+          </div>
+      </div>
+      <div class="container">
+          <div id="search-overlay__results">
+
+          </div>
+      </div>
+    </div>
+    `);
+  }
+
+  // events
+  events() {
+    this.openButton.on("click", this.openOverlay.bind(this));
+    this.closeButton.on("click", this.closeOverlay.bind(this));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("keyup", this.keyPressDispatcher.bind(this));
+    this.searchField.on("keydown", this.typingLogic.bind(this));
+  }
+
+  // methods (function, action...)
+  openOverlay() {
+    this.searchOverlay.addClass("search-overlay--active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").addClass("body-no-scroll");
+    this.searchField.val("");
+    setTimeout(() => {
+      this.searchField.focus();
+    }, 301);
+    this.isOpen = true;
+  }
+  closeOverlay() {
+    this.searchOverlay.removeClass("search-overlay--active");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").removeClass("body-no-scroll");
+    this.isOpen = false;
+  }
+  keyPressDispatcher(evt) {
+    // Not making a rule for "s" because it would result in
+    // unwanted action for user.
+
+    if (evt.keyCode === 27 && this.isOpen) {
+      this.closeOverlay();
+    }
+  }
+  typingLogic() {
+    if (this.searchField.val() !== this.previousSearchTerm) {
+      clearTimeout(this.typingTimer);
+      if (this.searchField.val() !== "") {
+        if (!this.isSpinningWheel) {
+          this.searchResults.html('<div class="spinner-loader"></div>');
+          this.isSpinningWheel = true;
+        }
+        this.previousSearchTerm = this.searchField.val();
+        if (this.searchField.val().length > 3) this.typingTimer = setTimeout(this.getResults.bind(this), 750);
+      } else {
+        this.resultsDiv.html("");
+        this.isSpinningWheel = false;
+      }
+    }
+  }
+  getResults() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON(mainDataJs.root_url + "/wp-json/college-rest-api/v1/search?term=" + this.searchField.val(), results => {
+      this.searchResults.html(`
+        <div class="row">
+          <div class="one-third">
+            <h2 class="search-overlay__section-title">General Information</h2>
+            ${results.generalInfo.length === 0 ? `<p>No pages or posts for that search term.</p>` : results.generalInfo.map(result => `<li><a href="${result["url"]}">
+                            ${result["title"]}</a> ${result["postType"] === "post" ? `by ${result["authorName"]}` : ""}</li>`).join("")}
+          </div>
+          <div class="one-third">
+            <h2  class="search-overlay__section-title">Programs</h2>
+            ${results.programs.length === 0 ? `<p>No programs for that search term.  <a href="${mainDataJs.root_url}/programs">View all programs</a></p>` : results.programs.map(result => `<li><a href="${result["url"]}">${result["title"]}</a></li>`).join("")}
+            <h2  class="search-overlay__section-title">Professors</h2>
+            ${results.professors.length === 0 ? `<p>No professors from that search.</p>` : results.professors.map(result => `
+                        <li class="professor-card__list-item">
+                          <a class="professor-card" href="${result.url}">
+                          <img class="professor-card__image" src="${result.image}">
+                          <span class="professor-card__name">${result.title}</span>
+                          </a>
+                        </li>
+                        `).join("")}
+          </div>
+          <div class="one-third">
+            <h2  class="search-overlay__section-title">Campuses</h2>
+            ${results.campuses.length === 0 ? `<p>No campuses for that search term.  <a href="${mainDataJs.root_url}/campuses">View all campuses</a></p>` : results.campuses.map(result => `<li><a href="${result["url"]}">${result["title"]}</a></li>`).join("")}
+            <h2  class="search-overlay__section-title">Events</h2>
+            ${results.events.length === 0 ? `<p>No events from that search.  <a href="${mainDataJs.root_url}/events">View all events</a></p></p>` : results.events.map(result => `
+                        <div class="event-summary">
+                            <a class="event-summary__date t-center" href="${result.url}>">
+                                <span class="event-summary__month">${result.month}</span>
+                                <span class="event-summary__day">${result.day}</span>
+                            </a>
+                            <div class="event-summary__content">
+                                <h5 class="event-summary__title headline headline--tiny"><a href="${result.url}">${result.title}</a></h5>
+                                <p>${result.excerpt}<a href="${result.url}" class="nu gray">...Learn more</a></p>
+                            </div>
+                        </div>
+                        `).join("")}
+          </div>
+        </div>
+        `);
+    });
+    this.isSpinningWheel = false;
+  }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
+
+/***/ }),
+
 /***/ "./css/style.scss":
 /*!************************!*\
   !*** ./css/style.scss ***!
@@ -189,6 +335,16 @@ class MobileMenu {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = window["jQuery"];
 
 /***/ }),
 
@@ -4141,6 +4297,18 @@ var Glide = /*#__PURE__*/function (_Core) {
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

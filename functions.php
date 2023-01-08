@@ -36,6 +36,12 @@ require_once THEME_DIR . '/inc/core/image-support.php';
 require_once THEME_DIR . '/inc/types/post-types.php';
 
 /**
+ * Theme functionality: REST API
+ */
+require_once THEME_DIR . '/inc/core/rest-api.php';
+
+
+/**
  * Theme functionality: Adjust queries as needed
  */
 require_once THEME_DIR . '/inc/campus/queries.php';
