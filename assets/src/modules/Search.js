@@ -52,6 +52,7 @@ class Search {
       this.searchField.focus();
     }, 301);
     this.isOpen = true;
+    return false;
   }
 
   closeOverlay() {
@@ -78,7 +79,7 @@ class Search {
           this.isSpinningWheel = true;
         }
         this.previousSearchTerm = this.searchField.val();
-        if (this.searchField.val().length > 3)
+        if (this.searchField.val().length > 2)
           this.typingTimer = setTimeout(this.getResults.bind(this), 750);
       } else {
         this.resultsDiv.html("");

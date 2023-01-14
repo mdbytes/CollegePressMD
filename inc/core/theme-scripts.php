@@ -10,7 +10,8 @@ function theme_scripts()
     wp_enqueue_style('university_main_styles', THEME_URI . '/assets/build/style-index.css');
     wp_enqueue_style('university_extra_styles', THEME_URI . '/assets/build/index.css');
     wp_localize_script('main-theme-js', 'mainDataJs', array(
-        'root_url' => get_site_url()
+        'root_url' => get_site_url(),
+        'nonce' => wp_create_nonce('wp_rest')
     ));
 }
 

@@ -20,6 +20,12 @@ function theme_custom_rest()
         'methods' => WP_REST_Server::ALLMETHODS,
         'callback' => 'college_search_results'
     ));
+
+    register_rest_field('note', 'userNoteCount', array(
+        'get_callback' => function () {
+            return count_user_posts('get_current_user_id()', 'note');
+        }
+    ));
 }
 
 function college_search_results($data)
