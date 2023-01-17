@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.headline {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.school-header-logo {
+
+    margin: 0;
+
+    img {
+        height: 50px;
+        width: auto;
+    }
+}
+
+.site-header__util {
+    a {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+.site-footer {
+    .school-logo-text {
+        img {
+            height: 64px;
+            width: auto;
+        }
+    }
+}
+
+.colophon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    color: #666;
+    font-size: 1rem;
+
+    div {
+        margin-bottom: 1rem;
+    }
+
+    a {
+        text-underline-offset: .3rem;
+
+
+    }
+}
+
+a:-webkit-any-link {
+    text-underline-offset: .5rem;
+}

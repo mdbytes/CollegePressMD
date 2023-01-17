@@ -7,4 +7,4 @@ function image_support()
     add_image_size('page-banner', 1500, 350, true);
 }
 
-add_action('setup_image_support', 'image_support');
+add_action('after_setup_theme', 'image_support');

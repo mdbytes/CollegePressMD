@@ -1,6 +1,10 @@
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./css/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap);
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./css/style.scss (1) ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
 /* 3rd party packages */
 /* SASS and Global'ish Stuff */
 body {
@@ -1616,6 +1620,55 @@ body.admin-bar .search-overlay {
 .post-item:last-of-type {
   border-bottom: none;
   margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.headline {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.school-header-logo {
+  margin: 0;
+}
+.school-header-logo img {
+  height: 50px;
+  width: auto;
+}
+
+.site-header__util a {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.site-footer .school-logo-text img {
+  height: 64px;
+  width: auto;
+}
+
+.colophon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  color: #666;
+  font-size: 1rem;
+}
+.colophon div {
+  margin-bottom: 1rem;
+}
+.colophon a {
+  text-underline-offset: 0.3rem;
+}
+
+a:-webkit-any-link {
+  text-underline-offset: 0.5rem;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

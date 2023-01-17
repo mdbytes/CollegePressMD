@@ -6,4 +6,4 @@ function theme_features()
     add_theme_support('post-thumbnails');
 }
 
-add_action('setup_theme_features', 'theme_features');
+add_action('after_setup_theme', 'theme_features');

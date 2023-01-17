@@ -15,7 +15,7 @@ function page_banner($args = NULL)
         if (get_field('page_banner_background_image') && !is_archive() && !is_home() && isset($args['photo'])) {
             $args['photo'] = get_field('page_banner_background_image')['sizes']['page-banner'];
         } else {
-            $args['photo'] = get_theme_file_uri('/images/ocean.jpg');
+            $args['photo'] = get_theme_file_uri('/images/hero.jpg');
         }
     }
 
