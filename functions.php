@@ -77,70 +77,26 @@ require_once THEME_DIR . '/inc/home/home-events.php';
 /**
  * Redirect subscribers on login
  */
-function redirect_subs_to_frontend()
-{
-    $current_user = wp_get_current_user();
+require_once THEME_DIR . '/inc/core/redirect-login.php';
 
-    if (count($current_user->roles) == 1 && $current_user->roles[0] == 'subscriber') {
-        wp_redirect(site_url('/'));
-        exit;
-    }
-}
-add_action('admin_init', 'redirect_subs_to_frontend');
-
-function no_subs_admin_bar()
-{
-    $current_user = wp_get_current_user();
-    if (count($current_user->roles) == 1 && $current_user->roles[0] == 'subscriber') {
-        add_filter('show_admin_bar', '__return_false');
-    }
-}
-add_action('wp_loaded', 'no_subs_admin_bar');
+/**
+ * Remove admin bar for subscriber login
+ */
+require_once THEME_DIR . '/inc/core/remove-admin.php';
 
 
 /**
  * Customize login screen
  */
-function theme_header_url()
-{
-    return esc_url(site_url('/'));
-}
+require_once THEME_DIR . '/inc/core/login-custom.php';
 
-add_filter('login_headerurl', 'theme_header_url');
-
-function theme_login_css()
-{
-    wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
-    wp_enqueue_style('google-font-for-logo', '//fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap');
-    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-    wp_enqueue_style('university_main_styles', THEME_URI . '/assets/build/style-index.css');
-    wp_enqueue_style('university_extra_styles', THEME_URI . '/assets/build/index.css');
-}
-
-add_action('login_enqueue_scripts', 'theme_login_css');
-
-function theme_login_title()
-{
-    return get_bloginfo('name');
-}
-
-add_filter('login_headertitle', 'theme_login_title');
+/**
+ * Make notes private
+ */
+require_once THEME_DIR . '/inc/core/notes-private.php';
 
 
-// Force note posts to be private
-function make_note_private($data, $postarr)
-{
-    if ($data['post_type'] == 'note') {
-        if (count_user_posts(get_current_user_id(), 'note')  > 4 && !$postarr['ID']) {
-            die('You have reached your note limit');
-        }
-
-        $data['post_content'] = sanitize_textarea_field($data['post_content']);
-        $data['post_title'] = sanitize_text_field($data['post_title']);
-    }
-
-    if ($data['post_type'] == 'note' && $data['post_status'] != 'trash') {
-        $data['post_status'] = "private";
-    }
-    return $data;
-}
+/**
+ * Exclude node_modules on export
+ */
+require_once THEME_DIR . '/inc/core/exclude-filters.php';
