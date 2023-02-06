@@ -1,8 +1,6 @@
 ### CollegeWordPressTheme
 
-A basic WordPress theme built in conjunction with the following course:
-
-<a href="https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/">Becoming a WordPress Developer: Unlocking Power With Code</a>
+<p>A demo website for educational institutions.  Provides a front end which allows users to browse college programs, review events, and even to register, create, edit and store their own notes.  Users can also search through instructors and campuses along with related programs and events. Initial framework was built in conjunction with <a href="https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/">Becoming a WordPress Developer: Unlocking Power With Code</a>.</p>
 
 <h3>Course Covers:</h3>
 <ul>
@@ -15,4 +13,11 @@ A basic WordPress theme built in conjunction with the following course:
 
 <p>Credit to <a href="https://www.udemy.com/user/bradschiff/">Brad Schiff</a> for developing and presenting an excellent course which brings WordPress to life.</p>
 
-<p>The material herein varies from the course material in two important ways: (1) the developer chose to vary from the theme structure for menus, keeping them as an adjustable theme feature, and (2) the developer chose different content and focus for many of the website pages and posts.</p>
+<p>The material herein varies from the course material in several important ways:</p>
+
+<ol>
+<li>The navbars are kept as an adjustable theme feature editable through the admin panel.</li>
+<li>The text, images and page content for the website pages and posts have been altered.</li>
+<li>The code has been substantially refactored and reorganized.  There are no mandatory plugins and functions.php has been substantially reduced in size and nature</li>
+<li>As is consistent with most WordPress themes today, the "single-{name}" and "page-{name}" type files have been abandoned in favor of conditional rendering inside single.php and page.php, respectively.</li>
+</ol>
