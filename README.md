@@ -1,6 +1,6 @@
 ### CollegeWordPressTheme
 
-<p>A demo website for educational institutions.  Provides a front end which allows users to browse college programs, review events, and even to register, create, edit and store their own notes.  Users can also search through instructors and campuses along with related programs and events. Initial framework was built in conjunction with <a href="https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/">Becoming a WordPress Developer: Unlocking Power With Code</a>.</p>
+<p>A demo website educational institution websites.  Provides a front end which allows users to browse college programs, review events, and even to register, create, edit and store their own notes.  Users can also search through instructors and campuses along with related programs and events. Initial framework was built in conjunction with <a href="https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/">Becoming a WordPress Developer: Unlocking Power With Code</a>.</p>
 
 <h3>Course Covers:</h3>
 <ul>
@@ -19,5 +19,13 @@
 <li>The navbars are kept as an adjustable theme feature editable through the admin panel.</li>
 <li>The text, images and page content for the website pages and posts have been altered.</li>
 <li>The code has been substantially refactored and reorganized.  There are no mandatory plugins and functions.php has been substantially reduced in size and nature</li>
-<li>As is consistent with most WordPress themes today, the "single-{name}" and "page-{name}" type files have been abandoned in favor of conditional rendering inside single.php and page.php, respectively.</li>
+<li>As is consistent with most WordPress themes today, the "single-{name}" and "page-{name}" type files have been abandoned in favor of conditional rendering inside single.php and page.php, respectively, with more extensive use of template parts.</li>
 </ol>
+
+<p>Plugins developed for this theme have been included within the assets/plugins subdirectories. These plugins include:</p>
+
+<ul>
+<li>A word count plugin which provides estimated word count and reading time for each post, placing the information at the beginning end of the post.</li>
+<li>A word filter plugin which provides admin users the ability to filter words which are published.</li>
+<li></li>
+</ul>
